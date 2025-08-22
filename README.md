@@ -1,12 +1,11 @@
 # selenium_e2e_pytest_framework
 # 🚀 Selenium PyTest Cross-Browser Framework
-# 🚀 Selenium PyTest Cross-Browser Framework
 
 <p align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Selenium_Logo.png" alt="Selenium Logo" width="120"/>
   <br/>
   <b>Automated Testing Framework with Selenium & PyTest</b>
-</p>
+
 
 <p align="center">
   <!-- Build/Test Badge -->
