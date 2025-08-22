@@ -63,6 +63,13 @@ The framework is designed to be:
 - Fixtures & Command-line options  
 - Test Automation Best Practices  
 
----
-
+--## 📂 Project Structure
+github/workflows/ → GitHub Actions (CI/CD pipeline)
+tests/ → All test scripts + conftest.py
+reports/ → Test execution reports (HTML/Allure)
+images/ → Screenshots
+requirements.txt → Python dependencies
+README.md → Project documentation
+LICENSE → Open-source license
+.gitignore → Ignore unnecessary files
 ## ⚡ Project Structure
