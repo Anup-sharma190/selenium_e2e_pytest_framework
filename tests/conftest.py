@@ -29,22 +29,39 @@ Result:
 - Promotes **reusability & modular framework design**.
 - Recruiter-friendly demonstration of Selenium + PyTest integration.
 """
+
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.edge.service import Service as EdgeService
+
+
+def pytest_addoption(parser):
+    parser.addoption(
+        "--browser_name",
+        action="store",
+        default="chrome",
+        help="Browser option: chrome, firefox, or edge"
+    )
+
 
 @pytest.fixture()
-def browser():
-    """Headless Chrome fixture for all tests."""
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--no-sandbox")
-    chrome_options.add_argument("--disable-dev-shm-usage")
+def browserInstance(request):
+    browser_name = request.config.getoption("browser_name")
 
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=chrome_options)
+    if browser_name == "chrome":
+        driver = webdriver.Chrome(service=ChromeService())
+
+    elif browser_name == "firefox":
+        driver = webdriver.Firefox(service=FirefoxService())
+
+    elif browser_name == "edge":
+        driver = webdriver.Edge(service=EdgeService())
+
+    else:
+        raise ValueError(f"Unsupported browser: {browser_name}")
+
     driver.maximize_window()
     yield driver
     driver.quit()
-
